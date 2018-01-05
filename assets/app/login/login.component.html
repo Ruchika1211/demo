@@ -1,0 +1,54 @@
+<form class="form-signin" *ngIf="signin" #f="ngForm" (ngSubmit)="submitSignInForm(f.value)">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <div class="alert alert-success" *ngIf="nosignupError">
+        SignUp succesful please login now
+      </div>
+      <div class="alert alert-danger" *ngIf="signinError">Invalid credentials</div>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+     required autofocus name="email" ngModel 
+     #email="ngModel">
+    <div class="alert alert-danger" *ngIf="email.touched && !email.valid">Email is required.</div>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" 
+    required name="password" ngModel 
+    #password="ngModel">
+    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">Password is required.</div>
+    
+    
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="f.invalid">Sign in</button>
+</form>
+<div style="text-align:center"  *ngIf="signin">
+    <button class="btn btn-lg btn-primary " (click)="signInWithGoogle()">Sign in with Google</button>
+    <p (click)="signUp()">Not a user <span style="color:blue">Sign up now</span></p>
+</div>
+
+
+
+
+<form class="form-signin" #form="ngForm" *ngIf="signup" (ngSubmit)="submitForm(form.value)">
+    <h2 class="form-signin-heading">SignUp</h2>
+
+    <div class="alert alert-danger" *ngIf="signupError">User already exist</div>
+    <label for="inputEmail" class="sr-only">Username</label>
+    <input type="text"  class="form-control" placeholder="Username" name="username" ngModel 
+    #username="ngModel" 
+    required autofocus >
+    <div class="alert alert-danger" *ngIf="username.touched && !username.valid">Username is required</div>
+    
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email"class="form-control" placeholder="Email address" name="email"
+     required ngModel   #email="ngModel" >
+     <div class="alert alert-danger" *ngIf="email.touched && !email.valid">Email is required</div>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password"  class="form-control" placeholder="Password" name="password"
+     required ngModel #password="ngModel">
+     <div class="alert alert-danger" *ngIf="password.touched && !password.valid">Password is required</div>
+    <label for="inputPassword" class="sr-only">Confirm Password</label>
+    <input type="password"  class="form-control" placeholder="Confirm Password" name="confirmPassword"
+    required ngModel #confirmPassword="ngModel">
+    <div class="alert alert-danger" *ngIf="confirmPassword.touched && !confirmPassword.valid">Confirm Password is required</div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="form.invalid">Sign up</button>
+    <button class="btn btn-lg btn-primary btn-block"  (click)="signUpWithGoogle()">Sign up with Google</button>
+    <p (click)="signIn()">Already a user <span style="color:blue">Sign in now</span></p>
+</form>
